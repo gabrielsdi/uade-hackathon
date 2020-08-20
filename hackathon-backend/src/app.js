@@ -5,6 +5,9 @@ const app = express()
 let port = 3000;
 let destinataryEmail = "diplouade2020@gmail.com";
 let pass = "U4D32020!!";
+var cors = require('cors');
+
+app.use(cors());
 
 app.use(bodyParser.json())
 
@@ -18,11 +21,10 @@ app.listen(port, () => {
 
 app.post('/email', function(req, res) {
     let email = req.body.email;
-    let send = sendEmail(email, res);   
+    sendEmail(email, res);   
 });
 
-sendEmail = async (email, res) => {
-    console.log("email: " , email);    
+sendEmail = async (email, res) => {  
 
     var transporter = nodemailer.createTransport({
        service : email.service,
